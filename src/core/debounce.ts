@@ -1,6 +1,13 @@
-export function debounce<Args extends unknown[]>(
-  _fn: (...args: Args) => void,
-  _delay: number,
-): (...args: Args) => void {
-  throw new Error('not implemented');
+export function debounce<Args extends unknown[]>(fn: (...args: Args) => void, delay: number): (...args: Args) => void {
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+  return (...args: Args) => {
+    if (timeoutId !== null) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
 }
