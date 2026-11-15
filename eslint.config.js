@@ -18,6 +18,7 @@ export default tseslint.config(
       'prefer-const': 'error',
       'no-console': 'warn',
       '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
   prettier,
