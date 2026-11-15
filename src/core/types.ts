@@ -21,10 +21,10 @@ export interface CountryCurrency {
 }
 
 export interface Country {
-  name: string;
+  readonly name: string;
   flagUrl: string;
   capital: string | null;
   region: string;
   population: number;
-  languages: string[];
+  readonly languages: string[];
 }
