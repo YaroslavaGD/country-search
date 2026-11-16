@@ -63,4 +63,18 @@ describe('searchCountries', () => {
 
     await expect(promise).rejects.toMatchObject({ name: 'AbortError' });
   });
+
+  it('rejects with TimeoutError when request takes too long', async () => {
+    vi.mocked(fetch).mockImplementation((_url, init) => {
+      const signal = init?.signal;
+
+      return new Promise<Response>((_resolve, reject) => {
+        signal?.addEventListener('abort', () => reject(signal.reason));
+      });
+    });
+
+    const promise = searchCountries('germany', new AbortController().signal, 10);
+
+    await expect(promise).rejects.toMatchObject({ name: 'TimeoutError' });
+  });
 });
