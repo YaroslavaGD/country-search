@@ -8,9 +8,12 @@ const REQUEST_TIMEOUT_MS = 10000;
 export async function searchCountries(
   query: string,
   signal: AbortSignal,
-  _timeoutMs: number = REQUEST_TIMEOUT_MS,
+  timeoutMs: number = REQUEST_TIMEOUT_MS,
 ): Promise<Country[]> {
-  const response = await fetch(`${API_URL}${encodeURIComponent(query)}`, { signal });
+  const timeoutSignal = AbortSignal.timeout(timeoutMs);
+  const combinedSignal = AbortSignal.any([signal, timeoutSignal]);
+
+  const response = await fetch(`${API_URL}${encodeURIComponent(query)}`, { signal: combinedSignal });
 
   if (response.status === 404) {
     return [];
