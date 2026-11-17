@@ -11,7 +11,10 @@ const ERROR_MESSAGES: Record<Exclude<ErrorKind, 'aborted'>, string> = {
 export function renderStatus(state: SearchState, onRetry: () => void): HTMLElement[] {
   switch (state.status) {
     case 'loading':
-      return [createElement('span', { text: 'Searching…' })];
+      return [
+        createElement('span', { className: 'spinner', attributes: { 'aria-hidden': 'true' } }),
+        createElement('span', { text: 'Searching…' }),
+      ];
 
     case 'empty':
       return [createElement('span', { text: 'Nothing found. Try another name.' })];
