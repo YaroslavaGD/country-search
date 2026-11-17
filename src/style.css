@@ -1,0 +1,213 @@
+:root {
+  --ink: #1a1a1a;
+  --paper: #f2ede1;
+  --card: #fbf8f1;
+  --vermilion: #d9381e;
+  --indigo: #1f3a5f;
+  --border: 3px solid var(--ink);
+  --shadow: 6px 6px 0 var(--ink);
+  --font: 'Helvetica Neue', Helvetica, 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 32px;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--paper);
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  box-sizing: border-box;
+  width: 64px;
+  height: 64px;
+  border: var(--border);
+  background:
+    linear-gradient(var(--paper), var(--paper)) center / 50px 3px no-repeat,
+    radial-gradient(circle 25px at center, transparent 22px, var(--paper) 22px 25px, transparent 25px),
+    var(--vermilion);
+  transform: rotate(4deg);
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  top: 31px;
+  right: 52px;
+  box-sizing: border-box;
+  width: 24px;
+  height: 50px;
+  border: 3px solid var(--paper);
+  border-radius: 50%;
+  transform: rotate(4deg);
+}
+
+.search-input {
+  width: 100%;
+  max-width: 480px;
+  padding: 14px 16px;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  background: var(--card);
+  border: var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--vermilion);
+  box-shadow: 6px 6px 0 var(--vermilion);
+}
+
+.status {
+  min-height: 1.5em;
+  margin: 32px 0;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--indigo);
+}
+
+.button {
+  margin-left: 12px;
+  padding: 8px 14px;
+  font: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--vermilion);
+  border: var(--border);
+  box-shadow: 4px 4px 0 var(--ink);
+  cursor: pointer;
+}
+
+.button:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 40px 32px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background: var(--card);
+  border: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.card__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border: 1px solid var(--ink);
+}
+
+.card__name {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 20px 0 12px;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.card__name::before {
+  content: '';
+  flex: none;
+  width: 12px;
+  height: 12px;
+  margin-top: 0.4em;
+  background: var(--vermilion);
+  border-radius: 50%;
+}
+
+.card__text {
+  margin: 6px 0;
+  padding-bottom: 6px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.2);
+}
+
+.card__details {
+  margin-top: 12px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.card__summary {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--paper);
+  background: var(--ink);
+  cursor: pointer;
+  list-style: none; /* remove triangle */
+}
+
+.card__summary::-webkit-details-marker {
+  display: none;
+}
+
+.card__summary::after {
+  content: ' +';
+}
+
+.card__details[open] .card__summary::after {
+  content: ' \2212'; /* minus */
+}
+
+.card__summary:focus-visible,
+.button:focus-visible {
+  outline: 3px solid var(--vermilion);
+  outline-offset: 2px;
+}
+
+.card__details[open] > .card__text:first-of-type {
+  margin-top: 12px;
+}
+
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+  vertical-align: -2px;
+  background: var(--vermilion);
+  border: 3px solid var(--ink);
+  animation: spin 0.8s steps(8) infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
