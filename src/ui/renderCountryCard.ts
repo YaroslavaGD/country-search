@@ -14,7 +14,6 @@ export function renderCountryCard(country: Country): HTMLElement {
   });
   const capital = createElement('p', { className: 'card__text', text: `Capital: ${country.capital ?? '---'}` });
   const region = createElement('p', { className: 'card__text', text: `Region: ${country.region}` });
-  const languages = createElement('p', { className: 'card__text', text: `Languages: ${country.languages.join(', ')}` });
 
-  return createElement('article', { className: 'card' }, img, name, capital, region, population, languages);
+  return createElement('article', { className: 'card' }, img, name, capital, region, population);
 }
