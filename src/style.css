@@ -106,6 +106,8 @@ body::after {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   padding: 16px;
   background: var(--card);
   border: var(--border);
@@ -148,6 +150,8 @@ body::after {
 
 .card__details {
   margin-top: 12px;
+  margin-top: auto;
+  padding-top: 12px;
 }
 
 .card__summary {
