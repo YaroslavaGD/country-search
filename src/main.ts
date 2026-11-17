@@ -1,3 +1,4 @@
+import './style.css';
 import { createSearchController } from './core/searchController';
 import { searchCountries } from './core/searchCountries';
 import { createElement } from './ui/createElement';
@@ -5,9 +6,9 @@ import { renderCountryCard } from './ui/renderCountryCard';
 
 const DEBOUNCE_MS = 300;
 
-const searchInput = createElement('input');
-const statusText = createElement('p');
-const resultsList = createElement('div');
+const searchInput = createElement('input', { className: 'search-input' });
+const statusText = createElement('p', { className: 'status' });
+const resultsList = createElement('div', { className: 'results' });
 document.body.append(searchInput, statusText, resultsList);
 
 const searchController = createSearchController({
