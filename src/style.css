@@ -197,7 +197,7 @@ body::after {
   vertical-align: -2px;
   background: var(--vermilion);
   border: 3px solid var(--ink);
-  animation: spin 0.8s steps(4) infinite;
+  animation: spin 0.8s steps(8) infinite;
 }
 
 @keyframes spin {
