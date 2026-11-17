@@ -4,7 +4,7 @@ import antarctica from './fixtures/antarctica.json';
 import { mapCountryResponse } from '../src/core/mapCountryResponse';
 
 describe('mapCountryResponse', () => {
-  it('returns only the card fields', () => {
+  it('maps a raw country to country data', () => {
     expect(mapCountryResponse(germany)).toEqual({
       name: 'Germany',
       flagUrl: 'https://flagcdn.com/de.svg',
@@ -12,6 +12,9 @@ describe('mapCountryResponse', () => {
       region: 'Europe',
       population: 83240525,
       languages: ['German'],
+      area: 357114,
+      borders: ['AUT', 'BEL', 'CZE', 'DNK', 'FRA', 'LUX', 'NLD', 'POL', 'CHE'],
+      currencies: ['Euro'],
     });
   });
 
@@ -39,5 +42,13 @@ describe('mapCountryResponse', () => {
     mapCountryResponse(raw);
 
     expect(raw).toEqual(germany);
+  });
+
+  it('returns empty borders and currencies when the country has none', () => {
+    const result = mapCountryResponse(antarctica);
+
+    expect(result.area).toBe(14000000);
+    expect(result.borders).toEqual([]);
+    expect(result.currencies).toEqual([]);
   });
 });

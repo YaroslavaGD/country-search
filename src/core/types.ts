@@ -22,9 +22,12 @@ export interface CountryCurrency {
 
 export interface Country {
   readonly name: string;
-  flagUrl: string;
-  capital: string | null;
-  region: string;
-  population: number;
-  readonly languages: string[];
+  readonly flagUrl: string;
+  readonly capital: string | null;
+  readonly region: string;
+  readonly population: number;
+  readonly languages: readonly string[];
+  readonly area: number;
+  readonly borders: readonly string[];
+  readonly currencies: readonly string[];
 }
